@@ -1,12 +1,12 @@
 /**
- * CASIO SCIENTIFIC CALCULATOR COMPONENT — STYLESHEET
- * Models: Casio fx-580VN X (ClassWiz) & Casio fx-880BTG (ClassWiz II)
+ * CASIO SCIENTIFIC CALCULATOR COMPONENT — STYLESHEET (CLONE 1:1)
+ * Models: Casio fx-880BTG (Bitex ClassWiz II) & Casio fx-580VN X (ClassWiz)
  * Author: Thầy Hùng (NMH) — HUNG-CAL (hungcal.vercel.app)
  */
 
 /* Container & CSS Variables */
 .casio-calc-wrapper {
-  --casio-kh: clamp(24px, 3.6vh, 38px);
+  --casio-kh: clamp(24px, 3.4vh, 36px);
   --casio-font: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   --casio-mono-font: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, Courier, monospace;
   display: flex;
@@ -14,11 +14,14 @@
   align-items: center;
   width: 100%;
   height: 100%;
-  padding: 8px;
+  padding: 6px;
   box-sizing: border-box;
   font-family: var(--casio-font);
   user-select: none;
   -webkit-user-select: none;
+  isolation: isolate;
+  position: relative;
+  z-index: 20;
 }
 
 /* Base Calculator Chassis */
@@ -26,87 +29,132 @@
   position: relative;
   width: min(440px, 100%);
   max-width: 440px;
-  border-radius: 28px 28px 46px 46px;
-  padding: 14px 16px 16px;
+  padding: 12px 16px 14px;
   box-sizing: border-box;
-  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.75), 0 2px rgba(255, 255, 255, 0.12) inset, 0 -4px rgba(0, 0, 0, 0.6) inset, 0 0 0 1px #000;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.85), 0 2px rgba(255, 255, 255, 0.12) inset, 0 -4px rgba(0, 0, 0, 0.6) inset, 0 0 0 1px #000;
   transition: all 0.25s ease;
 }
 
 /* ========================================================
-   MODEL 1: CASIO fx-580VN X (ClassWiz Series)
-   Carbon-textured Black Casing, Green-Grey LCD, Replay Disc
+   MODEL 1: CASIO fx-880BTG (ClassWiz II - BITEX EDITION)
+   ======================================================== */
+.casio-chassis.model-880 {
+  background: linear-gradient(165deg, #1e293b 0%, #0f172a 60%, #070a10 100%);
+  border-radius: 38px 38px 54px 54px;
+  border: 1px solid #111827;
+}
+
+/* Bitex Hologram Sticker (Top Right) */
+.casio-bitex-sticker {
+  position: relative;
+  width: 105px;
+  height: 38px;
+  border-radius: 6px;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 25%, #f1f5f9 50%, #94a3b8 75%, #ffffff 100%);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.9), inset 0 -1px rgba(0, 0, 0, 0.2);
+  border: 1px solid #64748b;
+  display: flex;
+  align-items: center;
+  padding: 2px 6px;
+  overflow: hidden;
+}
+.casio-bitex-sticker::before {
+  content: "";
+  position: absolute;
+  inset: -100%;
+  background: linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.4) 48%, rgba(0, 255, 255, 0.4) 52%, transparent 60%);
+  animation: bitex-shimmer 4s infinite linear;
+  pointer-events: none;
+}
+@keyframes bitex-shimmer {
+  0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+  100% { transform: translateX(50%) translateY(50%) rotate(360deg); }
+}
+
+.casio-bitex-logo {
+  display: flex;
+  flex-direction: column;
+  z-index: 2;
+  width: 100%;
+}
+.bitex-tag {
+  font-size: 7.5px;
+  font-weight: 900;
+  color: #dc2626;
+  letter-spacing: 0.05em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+.bitex-title {
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 15px;
+  font-weight: 950;
+  color: #0f172a;
+  letter-spacing: 0.08em;
+  line-height: 1.1;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8);
+}
+
+/* ========================================================
+   MODEL 2: CASIO fx-580VN X (ClassWiz)
    ======================================================== */
 .casio-chassis.model-580 {
   background: radial-gradient(circle at 50% 0%, #2b3340 0%, #181d25 55%, #0d1117 100%),
               repeating-linear-gradient(45deg, rgba(0,0,0,0.18) 0 2px, rgba(255,255,255,0.03) 2px 4px);
   border-radius: 28px 28px 46px 46px;
+  border: 1px solid #1e293b;
 }
 
-/* Top Bezel: Brand & Solar Panel */
+/* Top Bar: Brand, Logo & Model Selector */
 .casio-top-bar {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
-  padding: 0 4px;
+  margin-bottom: 8px;
+  padding: 0 2px;
 }
 
 .casio-brand-info {
   display: flex;
   flex-direction: column;
 }
-
 .casio-brand-name {
   font-family: Arial, Helvetica, sans-serif;
-  font-weight: 900;
+  font-weight: 950;
   letter-spacing: 0.14em;
-  font-size: 15px;
+  font-size: 16px;
   color: #ffffff;
   line-height: 1.1;
 }
-
 .casio-model-code {
-  font-weight: 800;
+  font-weight: 900;
   font-size: 13.5px;
-  color: #60a5fa;
+  color: #38bdf8;
   letter-spacing: 0.04em;
   line-height: 1.2;
 }
-
+.model-580 .casio-model-code {
+  color: #60a5fa;
+}
 .casio-series-sub {
   font-size: 9px;
-  font-weight: 700;
+  font-weight: 800;
   color: #94a3b8;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.1em;
   text-transform: uppercase;
 }
-
-.casio-solar-panel {
-  width: 72px;
-  height: 22px;
-  border-radius: 4px;
-  background: linear-gradient(180deg, #3d2417 0%, #1e110a 50%, #2f190e 100%);
-  border: 1px solid rgba(0, 0, 0, 0.8);
-  box-shadow: inset 0 1px rgba(255, 255, 255, 0.15), 0 2px 5px rgba(0,0,0,0.5);
-  display: flex;
-  overflow: hidden;
-}
-.casio-solar-panel div {
-  flex: 1;
-  border-right: 1px solid rgba(255, 255, 255, 0.08);
-}
-.casio-solar-panel div:last-child {
-  border-right: none;
+.model-580 .casio-series-sub {
+  color: #f87171;
 }
 
-/* Model Switcher Pill in Top Bar */
+/* Model Switcher Pill */
 .casio-model-switcher {
   display: inline-flex;
-  background: rgba(15, 23, 42, 0.7);
+  background: rgba(15, 23, 42, 0.8);
   border-radius: 999px;
   padding: 2px;
   border: 1px solid rgba(255, 255, 255, 0.15);
+  margin-left: 8px;
 }
 .casio-model-btn {
   background: transparent;
@@ -122,64 +170,94 @@
 .casio-model-btn.active {
   background: #3b82f6;
   color: #ffffff;
-  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
 
 /* ========================================================
-   LCD SCREEN (NATURAL TEXTBOOK DISPLAY)
+   LCD SCREEN (AUTHENTIC DOT MATRIX & MENU SCREEN)
    ======================================================== */
 .casio-screen-bezel {
-  background: #11161f;
+  background: #0f141d;
   border-radius: 12px;
   padding: 8px 10px;
-  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.9), 0 1px rgba(255, 255, 255, 0.1);
-  margin-bottom: 12px;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, 0.95), 0 1px rgba(255, 255, 255, 0.1);
+  margin-bottom: 10px;
 }
 
 .casio-lcd {
   position: relative;
-  background: linear-gradient(180deg, #cad8ba 0%, #b8c9a6 100%);
+  background: linear-gradient(180deg, #d8e5cb 0%, #c4d3b6 100%);
   color: #142012;
-  border-radius: 8px;
-  min-height: 116px;
-  padding: 6px 10px;
+  border-radius: 6px;
+  min-height: 118px;
+  padding: 6px 8px;
   box-sizing: border-box;
-  box-shadow: inset 0 0 22px rgba(90, 107, 73, 0.45), inset 0 2px rgba(255, 255, 255, 0.5);
+  box-shadow: inset 0 0 20px rgba(80, 95, 65, 0.4), inset 0 2px rgba(255, 255, 255, 0.5);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   overflow: hidden;
+  font-family: var(--casio-mono-font), monospace;
 }
 
-/* Subtle dot-matrix scanline texture */
+.model-880 .casio-lcd {
+  background: linear-gradient(180deg, #f5f8fa 0%, #dde4ec 100%);
+  color: #0f172a;
+  box-shadow: inset 0 0 18px rgba(100, 116, 139, 0.25), inset 0 2px rgba(255, 255, 255, 0.8);
+}
+
+/* Scanline Dot-matrix Texture */
 .casio-lcd::after {
   content: "";
   position: absolute;
   inset: 0;
-  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(20, 32, 18, 0.04) 2px 3px);
+  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(15, 23, 42, 0.035) 2px 3px);
   pointer-events: none;
 }
 
-/* LCD Status Header (S, A, STO, D/R/G, Math, Digits) */
+/* Status Header Bar */
 .casio-lcd-status {
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
   font-size: 11px;
-  font-weight: 850;
+  font-weight: 900;
   color: rgba(20, 32, 18, 0.25);
-  border-bottom: 1px solid rgba(20, 32, 18, 0.18);
+  border-bottom: 1px solid rgba(20, 32, 18, 0.15);
   padding-bottom: 3px;
-  margin-bottom: 4px;
+  line-height: 1;
 }
+.model-880 .casio-lcd-status {
+  color: rgba(15, 23, 42, 0.25);
+  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
+}
+
+.casio-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1px 3px;
+  border-radius: 2px;
+}
+.casio-badge.active {
+  background: #142012;
+  color: #cad8ba !important;
+}
+.model-880 .casio-badge.active {
+  background: #0f172a;
+  color: #f8fafc !important;
+}
+
 .casio-lcd-status span.active {
   color: #142012;
-  font-weight: 900;
-  text-shadow: 0 0 1px rgba(20, 32, 18, 0.5);
+  font-weight: 950;
 }
-.casio-lcd-status .status-spacer {
-  flex-grow: 1;
+.model-880 .casio-lcd-status span.active {
+  color: #0f172a;
 }
+
+.status-spacer { flex-grow: 1; }
+
 .casio-status-btn {
   background: none;
   border: none;
@@ -191,30 +269,193 @@
 }
 .casio-status-btn.active {
   color: #142012;
+  font-weight: 950;
+}
+.model-880 .casio-status-btn.active {
+  color: #0f172a;
+}
+
+/* ========================================================
+   AUTHENTIC 1:1 MENU SCREEN (ICON GRID NAVIGATION)
+   ======================================================== */
+.casio-menu-screen {
+  flex-grow: 1;
+  display: flex;
+  position: relative;
+  padding: 4px 0;
+  width: 100%;
+}
+
+.casio-menu-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px 10px;
+  flex-grow: 1;
+  align-content: center;
+}
+
+.casio-menu-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 4px 2px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.1s ease;
+  color: #142012;
+}
+.model-880 .casio-menu-item {
+  color: #0f172a;
+}
+
+.casio-menu-icon {
+  font-size: 20px;
+  line-height: 1;
+  margin-bottom: 2px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.casio-menu-icon svg {
+  width: 26px;
+  height: 22px;
+  fill: currentColor;
+}
+
+.casio-menu-label {
+  font-size: 10.5px;
+  font-weight: 850;
+  text-align: center;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
+/* Inverted Black Box when Menu Item is Selected */
+.casio-menu-item.selected {
+  background: #142012;
+  color: #cad8ba !important;
+}
+.model-880 .casio-menu-item.selected {
+  background: #0f172a;
+  color: #f8fafc !important;
+}
+.casio-menu-item.selected svg {
+  fill: #cad8ba !important;
+}
+.model-880 .casio-menu-item.selected svg {
+  fill: #f8fafc !important;
+}
+
+/* Scrollbar Track on Right of Menu */
+.casio-menu-scrolltrack {
+  width: 5px;
+  margin-left: 4px;
+  border-left: 1px solid rgba(20, 32, 18, 0.4);
+  position: relative;
+}
+.casio-menu-thumb {
+  position: absolute;
+  top: 15%;
+  left: -2px;
+  width: 5px;
+  height: 35%;
+  background: #142012;
+  border-radius: 2px;
+}
+.model-880 .casio-menu-thumb {
+  background: #0f172a;
+}
+
+/* 580VN X Numbered Menu Format */
+.casio-menu-580-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px 6px;
+  flex-grow: 1;
+}
+.casio-menu-580-item {
+  border: 1px solid rgba(20, 32, 18, 0.4);
+  padding: 3px;
+  border-radius: 3px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  font-size: 10px;
+  font-weight: 850;
+  position: relative;
+}
+.casio-menu-580-item .item-num {
+  position: absolute;
+  top: 1px;
+  right: 2px;
+  font-size: 8.5px;
+  font-weight: 900;
+}
+.casio-menu-580-item.selected {
+  background: #142012;
+  color: #cad8ba;
+}
+.casio-menu-580-status {
+  border-top: 1px dashed rgba(20, 32, 18, 0.4);
+  padding-top: 2px;
+  font-size: 11px;
   font-weight: 900;
 }
 
-/* LCD Input Expression Area (Multi-line Natural Textbook Display) */
+/* ========================================================
+   SUB-APPS: TABLE f(x), STATS, EQUATION
+   ======================================================== */
+.casio-subapp-view {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2px 0;
+}
+
+.casio-table-container {
+  overflow-y: auto;
+  max-height: 82px;
+  font-size: 12px;
+  scrollbar-width: thin;
+}
+.casio-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: right;
+}
+.casio-table th, .casio-table td {
+  padding: 1px 4px;
+  border-bottom: 1px solid rgba(20, 32, 18, 0.2);
+}
+.casio-table tr.selected {
+  background: #142012;
+  color: #cad8ba;
+}
+.model-880 .casio-table tr.selected {
+  background: #0f172a;
+  color: #f8fafc;
+}
+
+/* Expression Input & Natural Textbook Display */
 .casio-lcd-expr {
   min-height: 48px;
   display: flex;
   align-items: center;
-  font-size: 19px;
+  font-size: 18px;
   font-weight: 700;
   word-break: break-all;
   overflow-x: auto;
-  overflow-y: hidden;
   scrollbar-width: none;
-  color: #142012;
 }
-.casio-lcd-expr::-webkit-scrollbar {
-  display: none;
-}
+.casio-lcd-expr::-webkit-scrollbar { display: none; }
+
 .casio-cursor {
   display: inline-block;
-  width: 2px;
-  height: 1.1em;
-  background: #142012;
+  width: 2.5px;
+  height: 1.15em;
+  background: currentColor;
   margin-left: 2px;
   vertical-align: middle;
   animation: casio-blink 1s step-end infinite;
@@ -223,52 +464,59 @@
   50% { opacity: 0; }
 }
 
-/* LCD Result Line */
+/* Result Line */
 .casio-lcd-result {
   text-align: right;
   font-size: 20px;
-  font-weight: 850;
-  color: #142012;
+  font-weight: 900;
   min-height: 28px;
   display: flex;
   justify-content: flex-end;
   align-items: baseline;
   overflow-x: auto;
   scrollbar-width: none;
-  word-break: break-word;
 }
-.casio-lcd-result::-webkit-scrollbar {
-  display: none;
+.casio-lcd-result::-webkit-scrollbar { display: none; }
+
+.casio-frac {
+  display: inline-flex;
+  flex-direction: column;
+  align-items: center;
+  vertical-align: middle;
+  font-size: 0.85em;
+  padding: 0 3px;
+  line-height: 1;
+}
+.casio-frac .casio-bar {
+  width: 100%;
+  border-top: 1.5px solid currentColor;
+  margin: 1px 0;
 }
 
 /* ========================================================
-   KEYPAD MATRIX (GRID SYSTEM)
+   KEYPAD MATRIX & 1:1 CASIO BUTTONS
    ======================================================== */
 .casio-keypad {
   display: flex;
   flex-direction: column;
-  gap: calc(var(--casio-kh) * 0.22);
+  gap: calc(var(--casio-kh) * 0.2);
 }
 
 .casio-krow {
   display: grid;
-  gap: calc(var(--casio-kh) * 0.16) calc(var(--casio-kh) * 0.17);
+  gap: calc(var(--casio-kh) * 0.15) calc(var(--casio-kh) * 0.16);
 }
-.casio-krow.c6 {
-  grid-template-columns: repeat(6, 1fr);
-}
-.casio-krow.c5 {
-  grid-template-columns: repeat(5, 1fr);
-}
+.casio-krow.c6 { grid-template-columns: repeat(6, 1fr); }
+.casio-krow.c5 { grid-template-columns: repeat(5, 1fr); }
 
-/* Standard Key Button */
+/* Keys */
 .casio-k {
   position: relative;
   height: var(--casio-kh);
   border: none;
   border-radius: 6px;
   color: #eef2f6;
-  font-weight: 700;
+  font-weight: 750;
   font-size: calc(var(--casio-kh) * 0.33);
   background: linear-gradient(180deg, #505b68 0%, #38414c 100%);
   box-shadow: 0 3px 0 #0d1217, 0 5px 8px rgba(0, 0, 0, 0.45), inset 0 1px rgba(255, 255, 255, 0.2);
@@ -285,35 +533,31 @@
   box-shadow: 0 1px 0 #0d1217, 0 2px 4px rgba(0, 0, 0, 0.4);
 }
 
-/* Key Text Labels */
 .casio-k b {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  font-weight: 800;
+  font-weight: 850;
   line-height: 1;
 }
 
-/* Secondary Shift Label (Gold / Upper-left) */
 .casio-k .sl {
   position: absolute;
   top: 2px;
   left: 4px;
   font-size: calc(var(--casio-kh) * 0.21);
-  font-weight: 800;
+  font-weight: 850;
   font-style: normal;
   color: #fbbf24;
   line-height: 1;
   pointer-events: none;
 }
-
-/* Secondary Alpha Label (Pink / Upper-right) */
 .casio-k .al {
   position: absolute;
   top: 2px;
   right: 4px;
   font-size: calc(var(--casio-kh) * 0.21);
-  font-weight: 800;
+  font-weight: 850;
   font-style: normal;
   color: #f43f5e;
   line-height: 1;
@@ -326,7 +570,7 @@
   background: #fbbf24 !important;
   padding: 0 3px !important;
   border-radius: 3px !important;
-  box-shadow: 0 0 8px rgba(251, 191, 36, 0.9) !important;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.95) !important;
   font-weight: 900 !important;
   z-index: 5 !important;
 }
@@ -336,12 +580,18 @@
   background: #f43f5e !important;
   padding: 0 3px !important;
   border-radius: 3px !important;
-  box-shadow: 0 0 8px rgba(244, 63, 94, 0.9) !important;
+  box-shadow: 0 0 8px rgba(244, 63, 94, 0.95) !important;
   font-weight: 900 !important;
   z-index: 5 !important;
 }
 
-/* Key Color Variants */
+/* 880BTG Pebble Round Buttons */
+.casio-chassis.model-880 .casio-k {
+  border-radius: 999px !important;
+  box-shadow: 0 3px 0 #070a0e, 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.3);
+}
+
+/* Key Colors */
 .casio-k.k-shift {
   background: linear-gradient(180deg, #f8d247 0%, #d3a317 100%);
   color: #2b2100;
@@ -362,7 +612,6 @@
   filter: brightness(1.2);
 }
 
-/* Number Keys (0-9, .) */
 .casio-k.k-num {
   background: linear-gradient(180deg, #ffffff 0%, #e2e8f0 100%);
   color: #0f172a;
@@ -371,16 +620,13 @@
   height: calc(var(--casio-kh) * 1.12);
 }
 
-/* Operator Keys (+, -, ×, ÷) */
 .casio-k.k-op {
   background: linear-gradient(180deg, #5d6875 0%, #444d59 100%);
   font-size: calc(var(--casio-kh) * 0.52);
   height: calc(var(--casio-kh) * 1.12);
 }
 
-/* Delete & All Clear Keys */
-.casio-k.k-del,
-.casio-k.k-ac {
+.casio-k.k-del, .casio-k.k-ac {
   background: linear-gradient(180deg, #1d4ed8 0%, #1e40af 100%);
   color: #ffffff;
   font-size: calc(var(--casio-kh) * 0.34);
@@ -388,7 +634,6 @@
   height: calc(var(--casio-kh) * 1.12);
 }
 
-/* Equals Key */
 .casio-k.k-eq {
   background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
   color: #0f172a;
@@ -397,7 +642,16 @@
   height: calc(var(--casio-kh) * 1.12);
 }
 
-/* Replay D-Pad (fx-580VN X Metallic Disc) */
+.casio-k.k-exe {
+  background: linear-gradient(145deg, #2563eb, #1d4ed8) !important;
+  color: #ffffff !important;
+  font-weight: 900 !important;
+  font-size: calc(var(--casio-kh) * 0.35) !important;
+  height: calc(var(--casio-kh) * 1.12) !important;
+  box-shadow: 0 3px 0 #0f172a, 0 4px 12px rgba(37, 99, 235, 0.45) !important;
+}
+
+/* D-Pad with OK Button in Center */
 .casio-dpad {
   grid-column: span 2;
   height: calc(var(--casio-kh) * 1.5);
@@ -414,6 +668,10 @@
   background: linear-gradient(135deg, #e2e8f0 0%, #94a3b8 50%, #64748b 100%);
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.8);
 }
+.model-880 .casio-dpad .dpad-ring {
+  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
+}
+
 .casio-dpad .dpad-hub {
   position: absolute;
   inset: 0;
@@ -428,9 +686,21 @@
   font-size: 8px;
   font-weight: 900;
   color: #334155;
-  letter-spacing: 0.08em;
   pointer-events: none;
 }
+.model-880 .casio-dpad .dpad-hub.hub-ok {
+  width: 44%;
+  height: 44%;
+  background: linear-gradient(145deg, #2563eb, #1e40af);
+  color: #ffffff;
+  font-weight: 950;
+  font-size: 11px;
+  pointer-events: auto;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.4);
+  border: 1.5px solid rgba(255, 255, 255, 0.25);
+}
+
 .casio-dpad-btn {
   position: absolute;
   background: transparent;
@@ -442,111 +712,9 @@
   justify-content: center;
   cursor: pointer;
   padding: 0;
-  transition: transform 0.05s ease;
 }
-.casio-dpad-btn:active {
-  transform: scale(0.9);
-}
+.model-880 .casio-dpad-btn { color: #94a3b8; }
 .casio-dpad-btn.u { top: 0; left: 0; right: 0; height: 35%; }
 .casio-dpad-btn.d { bottom: 0; left: 0; right: 0; height: 35%; }
 .casio-dpad-btn.l { left: 0; top: 0; bottom: 0; width: 35%; }
 .casio-dpad-btn.r { right: 0; top: 0; bottom: 0; width: 35%; }
-
-/* ========================================================
-   MODEL 2: CASIO fx-880BTG (ClassWiz II)
-   Matte Navy Chassis, 4-Gradation LCD, Pebble Round Buttons
-   ======================================================== */
-.casio-chassis.model-880 {
-  background: linear-gradient(165deg, #1e293b 0%, #0f172a 60%, #070a10 100%);
-  border-radius: 38px 38px 54px 54px;
-}
-.casio-chassis.model-880 .casio-model-code {
-  color: #38bdf8;
-}
-
-/* 880BTG LCD: 4-Gradation Monochrome Display (Paper White) */
-.casio-chassis.model-880 .casio-lcd {
-  background: linear-gradient(180deg, #f8fafc 0%, #e2e8f0 100%);
-  color: #0f172a;
-  box-shadow: inset 0 0 20px rgba(100, 116, 139, 0.28), inset 0 2px rgba(255, 255, 255, 0.85);
-}
-.casio-chassis.model-880 .casio-lcd::after {
-  background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(15, 23, 42, 0.03) 2px 3px);
-}
-.casio-chassis.model-880 .casio-lcd-status {
-  border-bottom: 1px solid rgba(15, 23, 42, 0.12);
-  color: rgba(15, 23, 42, 0.35);
-}
-.casio-chassis.model-880 .casio-lcd-status span.active,
-.casio-chassis.model-880 .casio-status-btn.active {
-  color: #0f172a;
-}
-.casio-chassis.model-880 .casio-lcd-expr,
-.casio-chassis.model-880 .casio-lcd-result {
-  color: #0f172a;
-}
-.casio-chassis.model-880 .casio-cursor {
-  background: #0f172a;
-}
-
-/* 880BTG Pebble Round Buttons */
-.casio-chassis.model-880 .casio-k {
-  border-radius: 999px !important;
-  box-shadow: 0 3px 0 #070a0e, 0 4px 10px rgba(0, 0, 0, 0.5), inset 0 1px 1px rgba(255, 255, 255, 0.3);
-}
-.casio-chassis.model-880 .casio-k.k-num {
-  background: linear-gradient(180deg, #ffffff 0%, #cbd5e1 100%);
-  color: #0f172a;
-}
-.casio-chassis.model-880 .casio-k.k-del,
-.casio-chassis.model-880 .casio-k.k-ac {
-  background: linear-gradient(180deg, #3b82f6 0%, #1d4ed8 100%);
-  color: #ffffff;
-}
-
-/* 880BTG D-Pad with OK Button in Center */
-.casio-chassis.model-880 .casio-dpad .dpad-ring {
-  background: linear-gradient(135deg, #334155 0%, #1e293b 100%);
-}
-.casio-chassis.model-880 .casio-dpad-btn {
-  color: #94a3b8;
-}
-.casio-chassis.model-880 .dpad-hub.hub-ok {
-  width: 42%;
-  height: 42%;
-  background: linear-gradient(145deg, #2563eb, #1e40af);
-  color: #ffffff;
-  font-weight: 900;
-  font-size: 11px;
-  pointer-events: auto;
-  cursor: pointer;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.4);
-  border: 1.5px solid rgba(255, 255, 255, 0.25);
-  transition: transform 0.05s ease;
-}
-.casio-chassis.model-880 .dpad-hub.hub-ok:active {
-  transform: scale(0.92);
-}
-
-/* 880BTG EXE Execution Key */
-.casio-chassis.model-880 .casio-k.k-exe {
-  background: linear-gradient(145deg, #2563eb, #1d4ed8) !important;
-  color: #ffffff !important;
-  font-weight: 900 !important;
-  box-shadow: 0 3px 0 #0f172a, 0 4px 12px rgba(37, 99, 235, 0.4) !important;
-}
-
-/* 880BTG Dedicated Feature Keys */
-.casio-chassis.model-880 .casio-k.k-home,
-.casio-chassis.model-880 .casio-k.k-settings,
-.casio-chassis.model-880 .casio-k.k-back {
-  background: linear-gradient(180deg, #475569 0%, #334155 100%);
-  color: #f8fafc;
-}
-.casio-chassis.model-880 .casio-k.k-catalog,
-.casio-chassis.model-880 .casio-k.k-tools,
-.casio-chassis.model-880 .casio-k.k-var,
-.casio-chassis.model-880 .casio-k.k-fn {
-  background: linear-gradient(180deg, #334155 0%, #1e293b 100%);
-  color: #93c5fd;
-}
