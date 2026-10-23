@@ -5,7 +5,7 @@
 <script>
 // Tự động xóa cache cũ và kích hoạt phiên bản giao diện máy tính mới nhất
 (function() {
-  const CURRENT_VER = '20261023_v4_author_bidv';
+  const CURRENT_VER = '20261023_v5_device_swap';
   if (localStorage.getItem('hungcal_app_ver') !== CURRENT_VER) {
     localStorage.setItem('hungcal_app_ver', CURRENT_VER);
     localStorage.setItem('theme', 'dark');
@@ -88,7 +88,8 @@ window.MathJax = {
 };
 </script>
 <script defer src="./mathjax/tex-svg.js"></script>
-  <script type="module" crossorigin src="./assets/main-QrBuoGVf.js?v=3.1.0"></script>
+  <script type="module" src="./assets/device-swap.js?v=3.2.0"></script>
+  <script type="module" crossorigin src="./assets/main-QrBuoGVf.js?v=3.2.0"></script>
   <link rel="modulepreload" crossorigin href="./assets/OrbitControls-CC1Q_oXb.js">
   <link rel="stylesheet" crossorigin href="./assets/OrbitControls-DMUBSaLC.css?v=3.0.0">
   <link rel="stylesheet" crossorigin href="./assets/main-DSAFqZh2.css?v=3.0.0">
@@ -273,6 +274,15 @@ window.MathJax = {
 }
 .model-fx580 .logo .mname {
   color: #60a5fa !important;
+}
+.model-fx570 .logo .mname {
+  color: #fbbf24 !important;
+}
+.model-ti84 .logo .mname {
+  color: #c084fc !important;
+}
+.model-inkpad .logo .mname {
+  color: #f472b6 !important;
 }
 </style>
 
