@@ -99,6 +99,23 @@ window.MathJax = {
    AUTHENTIC CASIO FX-580VN X & FX-880BTG EMULATOR THEMES
    ======================================================== */
 
+:root {
+  --kh: clamp(24px, 3.4vh, 36px) !important;
+}
+
+#stage {
+  padding: 10px 14px 12px !important;
+  align-items: center !important;
+  justify-content: center !important;
+  scrollbar-width: thin !important;
+}
+
+.device {
+  width: min(440px, 100%) !important;
+  padding: 12px 16px 14px !important;
+  box-sizing: border-box !important;
+}
+
 /* --- CASIO fx-580VN X (ClassWiz) --- */
 .device.model-fx580 {
   background: radial-gradient(circle at 50% 0%, #2b3340 0%, #181d25 55%, #0d1117 100%),
@@ -112,6 +129,7 @@ window.MathJax = {
   background: linear-gradient(180deg, #cad8ba 0%, #b8c9a6 100%) !important;
   color: #142012 !important;
   box-shadow: inset 0 0 22px rgba(90, 107, 73, 0.45), inset 0 2px rgba(255,255,255,0.5) !important;
+  min-height: 110px !important;
 }
 .device.model-fx580 .lcd:after {
   background: repeating-linear-gradient(0deg, transparent 0 2px, rgba(20, 32, 18, 0.04) 2px 3px) !important;
@@ -162,6 +180,26 @@ window.MathJax = {
 }
 .device.model-fx580 .k .al {
   color: #f43f5e !important; /* Magenta Alpha labels */
+}
+
+/* Active Highlight for Shift and Alpha keys */
+.device.shift-active .k .sl {
+  color: #0f172a !important;
+  background: #fbbf24 !important;
+  padding: 0 3px !important;
+  border-radius: 3px !important;
+  box-shadow: 0 0 8px rgba(251, 191, 36, 0.85) !important;
+  font-weight: 900 !important;
+  z-index: 5 !important;
+}
+.device.alpha-active .k .al {
+  color: #ffffff !important;
+  background: #f43f5e !important;
+  padding: 0 3px !important;
+  border-radius: 3px !important;
+  box-shadow: 0 0 8px rgba(244, 63, 94, 0.85) !important;
+  font-weight: 900 !important;
+  z-index: 5 !important;
 }
 
 /* --- CASIO fx-880BTG (ClassWiz II) --- */
@@ -346,7 +384,7 @@ window.MathJax = {
 
 </head>
 <body>
-<div id="app">
+<div id="app" class="pinned">
   <div id="stage"><div class="device" id="device"></div></div>
   <main id="main">
     <header id="dock"></header>
