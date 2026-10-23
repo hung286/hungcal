@@ -5,7 +5,7 @@
 <script>
 // Tự động xóa cache cũ và kích hoạt phiên bản giao diện máy tính mới nhất
 (function() {
-  const CURRENT_VER = '20261023_v5_device_swap';
+  const CURRENT_VER = '20261023_v6_fix_overlap_cai_dat';
   if (localStorage.getItem('hungcal_app_ver') !== CURRENT_VER) {
     localStorage.setItem('hungcal_app_ver', CURRENT_VER);
     localStorage.setItem('theme', 'dark');
@@ -88,8 +88,8 @@ window.MathJax = {
 };
 </script>
 <script defer src="./mathjax/tex-svg.js"></script>
-  <script type="module" src="./assets/device-swap.js?v=3.2.0"></script>
-  <script type="module" crossorigin src="./assets/main-QrBuoGVf.js?v=3.2.0"></script>
+  <script type="module" src="./assets/device-swap.js"></script>
+  <script type="module" crossorigin src="./assets/main-QrBuoGVf.js"></script>
   <link rel="modulepreload" crossorigin href="./assets/OrbitControls-CC1Q_oXb.js">
   <link rel="stylesheet" crossorigin href="./assets/OrbitControls-DMUBSaLC.css?v=3.0.0">
   <link rel="stylesheet" crossorigin href="./assets/main-DSAFqZh2.css?v=3.0.0">
@@ -283,6 +283,64 @@ window.MathJax = {
 }
 .model-inkpad .logo .mname {
   color: #f472b6 !important;
+}
+
+/* ========================================================
+   SCROLL, Z-INDEX & OVERFLOW FIXES (CHỐNG ĐÈ CHỮ KHI SCROLL)
+   ======================================================== */
+#dock {
+  background: #0f172a !important;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08) !important;
+  z-index: 50 !important;
+  position: relative !important;
+}
+
+/* Đảm bảo container công thức toán học KaTeX không tràn đè sang khung hình vẽ */
+.katex-display {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+  overflow-y: hidden !important;
+  padding: 4px 0 !important;
+  scrollbar-width: thin !important;
+}
+.katex {
+  max-width: 100% !important;
+  word-break: normal !important;
+}
+.big-tex, .row .main, .step .katex {
+  max-width: 100% !important;
+  overflow-x: auto !important;
+}
+
+/* Cách ly Stacking Context cho các khung đồ thị / 3D cố định */
+.stgraph, .avis, .lpplot, .ntside {
+  background: var(--solid, #0f172a) !important;
+  z-index: 10 !important;
+  isolation: isolate !important;
+  border-radius: 14px !important;
+}
+
+.studyview, .areaview, .oxyzview, .polyview, .solidsview {
+  isolation: isolate !important;
+}
+
+.studyview > div:first-child, .areaview > div:first-child {
+  min-width: 0 !important;
+}
+
+/* Nền bảo vệ cho các nhãn chỉ dẫn nổi, tránh đè lên trục toạ độ */
+.inv-canvas-overlay, .canvas-hint, .avis-hint, .ghint, .greadout {
+  background: rgba(15, 23, 42, 0.85) !important;
+  backdrop-filter: blur(4px) !important;
+  -webkit-backdrop-filter: blur(4px) !important;
+  padding: 3px 8px !important;
+  border-radius: 6px !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+}
+
+.appview {
+  contain: layout !important;
+  scroll-behavior: smooth !important;
 }
 </style>
 
