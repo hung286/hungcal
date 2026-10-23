@@ -5,7 +5,7 @@
 <script>
 // Tự động xóa cache cũ và kích hoạt phiên bản giao diện máy tính mới nhất
 (function() {
-  const CURRENT_VER = '20261023_v6_fix_overlap_cai_dat';
+  const CURRENT_VER = '20261023_v7_casio_1to1_bitex_menu';
   if (localStorage.getItem('hungcal_app_ver') !== CURRENT_VER) {
     localStorage.setItem('hungcal_app_ver', CURRENT_VER);
     localStorage.setItem('theme', 'dark');
@@ -380,6 +380,201 @@ window.MathJax = {
   contain: layout !important;
   scroll-behavior: smooth !important;
 }
+
+/* ========================================================
+   AUTHENTIC CASIO BITEX STICKER & MENU LCD STYLES
+   ======================================================== */
+.casio-logo-wrap {
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+  width: 100% !important;
+}
+.casio-brand-info {
+  display: flex !important;
+  flex-direction: column !important;
+}
+.casio-brand-info small {
+  font-size: 8px !important;
+  letter-spacing: 0.05em !important;
+  color: #94a3b8 !important;
+  font-weight: 700 !important;
+}
+.casio-bitex-sticker {
+  position: relative !important;
+  width: 96px !important;
+  height: 32px !important;
+  border-radius: 5px !important;
+  background: linear-gradient(135deg, #ffffff 0%, #cbd5e1 25%, #f1f5f9 50%, #94a3b8 75%, #ffffff 100%) !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.5), inset 0 1px rgba(255, 255, 255, 0.9), inset 0 -1px rgba(0, 0, 0, 0.2) !important;
+  border: 1px solid #64748b !important;
+  display: flex !important;
+  align-items: center !important;
+  padding: 2px 6px !important;
+  overflow: hidden !important;
+  flex-shrink: 0 !important;
+}
+.casio-bitex-sticker::before {
+  content: "" !important;
+  position: absolute !important;
+  inset: -100% !important;
+  background: linear-gradient(45deg, transparent 40%, rgba(255, 215, 0, 0.4) 48%, rgba(0, 255, 255, 0.4) 52%, transparent 60%) !important;
+  animation: bitex-shimmer 4s infinite linear !important;
+  pointer-events: none !important;
+}
+@keyframes bitex-shimmer {
+  0% { transform: translateX(-50%) translateY(-50%) rotate(0deg); }
+  100% { transform: translateX(50%) translateY(50%) rotate(360deg); }
+}
+.casio-bitex-logo {
+  display: flex !important;
+  flex-direction: column !important;
+  z-index: 2 !important;
+  width: 100% !important;
+}
+.bitex-tag {
+  font-size: 6.5px !important;
+  font-weight: 900 !important;
+  color: #dc2626 !important;
+  letter-spacing: 0.05em !important;
+  line-height: 1 !important;
+  text-transform: uppercase !important;
+}
+.bitex-title {
+  font-family: Arial, Helvetica, sans-serif !important;
+  font-size: 13px !important;
+  font-weight: 950 !important;
+  color: #0f172a !important;
+  letter-spacing: 0.08em !important;
+  line-height: 1.1 !important;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Authentic Casio LCD Menu Screen */
+.casio-menu-screen {
+  flex-grow: 1 !important;
+  display: flex !important;
+  position: relative !important;
+  padding: 4px 0 !important;
+  width: 100% !important;
+  min-height: 80px !important;
+  box-sizing: border-box !important;
+}
+.casio-menu-grid {
+  display: grid !important;
+  grid-template-columns: repeat(3, 1fr) !important;
+  gap: 5px 8px !important;
+  flex-grow: 1 !important;
+  align-content: center !important;
+}
+.casio-menu-item {
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  padding: 4px 2px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  transition: all 0.1s ease !important;
+  color: #142012 !important;
+}
+.model-fx880 .casio-menu-item {
+  color: #0f172a !important;
+}
+.casio-menu-icon {
+  font-size: 18px !important;
+  line-height: 1 !important;
+  margin-bottom: 2px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+.casio-menu-icon svg {
+  width: 22px !important;
+  height: 18px !important;
+  fill: currentColor !important;
+}
+.casio-menu-label {
+  font-size: 10px !important;
+  font-weight: 850 !important;
+  text-align: center !important;
+  letter-spacing: -0.02em !important;
+  white-space: nowrap !important;
+}
+.casio-menu-item.selected {
+  background: #142012 !important;
+  color: #cad8ba !important;
+}
+.model-fx880 .casio-menu-item.selected {
+  background: #0f172a !important;
+  color: #f8fafc !important;
+}
+.casio-menu-item.selected svg {
+  fill: #cad8ba !important;
+}
+.model-fx880 .casio-menu-item.selected svg {
+  fill: #f8fafc !important;
+}
+.casio-menu-scrolltrack {
+  width: 4px !important;
+  margin-left: 4px !important;
+  border-left: 1px solid rgba(20, 32, 18, 0.4) !important;
+  position: relative !important;
+}
+.model-fx880 .casio-menu-scrolltrack {
+  border-left: 1px solid rgba(15, 23, 42, 0.3) !important;
+}
+.casio-menu-thumb {
+  position: absolute !important;
+  top: 15% !important;
+  left: -2px !important;
+  width: 4px !important;
+  height: 35% !important;
+  background: #142012 !important;
+  border-radius: 2px !important;
+}
+.model-fx880 .casio-menu-thumb {
+  background: #0f172a !important;
+}
+
+/* fx-580VN X Menu */
+.casio-menu-580-grid {
+  display: grid !important;
+  grid-template-columns: repeat(4, 1fr) !important;
+  gap: 4px 6px !important;
+  flex-grow: 1 !important;
+}
+.casio-menu-580-item {
+  border: 1px solid rgba(20, 32, 18, 0.4) !important;
+  padding: 3px !important;
+  border-radius: 3px !important;
+  display: flex !important;
+  flex-direction: column !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 30px !important;
+  cursor: pointer !important;
+  position: relative !important;
+}
+.casio-menu-580-item .item-num {
+  position: absolute !important;
+  top: 1px !important;
+  right: 2px !important;
+  font-size: 8px !important;
+  font-weight: 900 !important;
+}
+.casio-menu-580-item.selected {
+  background: #142012 !important;
+  color: #cad8ba !important;
+}
+.casio-menu-580-status {
+  border-top: 1px dashed rgba(20, 32, 18, 0.4) !important;
+  padding-top: 2px !important;
+  font-size: 11px !important;
+  font-weight: 900 !important;
+}
+
 </style>
 
 </head>
