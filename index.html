@@ -1,6 +1,17 @@
 <!doctype html>
-<html lang="vi">
+<html lang="vi" data-theme="dark" style="color-scheme: dark;">
 <head>
+
+<script>
+document.documentElement.setAttribute('data-theme', 'dark');
+try {
+  localStorage.setItem('theme', 'dark');
+  localStorage.setItem('calcTheme', 'dark');
+  localStorage.setItem('devPinned', 'true');
+  localStorage.setItem('calcDevPinned', 'true');
+} catch (_) {}
+</script>
+
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>HUNG-CAL — Bộ máy tính khoa học và bảng vẽ sư phạm</title>
@@ -47,10 +58,10 @@ window.MathJax = {
 };
 </script>
 <script defer src="./mathjax/tex-svg.js"></script>
-  <script type="module" crossorigin src="./assets/main-QrBuoGVf.js"></script>
+  <script type="module" crossorigin src="./assets/main-QrBuoGVf.js?v=2.0.1"></script>
   <link rel="modulepreload" crossorigin href="./assets/OrbitControls-CC1Q_oXb.js">
-  <link rel="stylesheet" crossorigin href="./assets/OrbitControls-DMUBSaLC.css">
-  <link rel="stylesheet" crossorigin href="./assets/main-DSAFqZh2.css">
+  <link rel="stylesheet" crossorigin href="./assets/OrbitControls-DMUBSaLC.css?v=2.0.1">
+  <link rel="stylesheet" crossorigin href="./assets/main-DSAFqZh2.css?v=2.0.1">
 
 <style id="casio-emulator-authentic">
 /* ========================================================
